@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO | Oversized Green Bomber Jacket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">AJIO</div>
+        <div class="search-bar">Search for products, brands and more</div>
+        <div class="nav-links">
+            <span>Sign In</span>
+            <span>Wishlist (1)</span>
+            <span>Bag</span>
+        </div>
+    </nav>
+
+    <main class="product-page">
+        <!-- Left Side: Product Images & Try On -->
+        <section class="visual-section">
+            <div class="main-image-container" id="image-container">
+                <img src="assets/tryon_result.png" alt="Oversized Green Bomber Jacket" class="product-img" id="product-img" style="display:none;">
+                <img src="assets/base_user.png" alt="User Base" class="product-img" id="user-img">
+                <div class="vto-overlay" id="vto-overlay">
+                    <div class="spinner"></div>
+                    <p>Mapping Garment via AI...</p>
+                </div>
+            </div>
+            
+            <div class="vto-controls">
+                <h3>Visual Trust</h3>
+                <p>See exactly how this looks on you.</p>
+                <button class="btn-primary" id="vto-btn">Virtual Try-On (Simulated)</button>
+                <button class="btn-secondary" id="reset-vto-btn" style="display:none;">Reset Photo</button>
+            </div>
+        </section>
+
+        <!-- Right Side: Product Details & Fit-Match AI -->
+        <section class="details-section">
+            <h1 class="product-title">Oversized Green Bomber Jacket</h1>
+            <p class="product-brand">AJIO EXCLUSIVE</p>
+            <div class="product-price">
+                <span class="current-price">₹2,499</span>
+                <span class="original-price">₹4,999</span>
+                <span class="discount">(50% OFF)</span>
+            </div>
+
+            <!-- FIT-MATCH AI WIDGET -->
+            <div class="fit-match-widget glass-card">
+                <div class="widget-header">
+                    <span class="badge">NEW</span>
+                    <h2>AJIO Fit-Match AI</h2>
+                </div>
+                <p class="widget-sub">Not sure about the size? Let AI analyze 1,000+ reviews for your body type.</p>
+                
+                <form id="fit-form">
+                    <div class="input-group">
+                        <label>Height</label>
+                        <input type="text" id="height" placeholder="e.g. 5'5&quot;" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Weight</label>
+                        <input type="text" id="weight" placeholder="e.g. 60 kg" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Fit Preference</label>
+                        <select id="fit_pref" required>
+                            <option value="Regular">Regular</option>
+                            <option value="Slim">Slim / Snug</option>
+                            <option value="Loose">Oversized / Loose</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-glow">Predict My Fit</button>
+                </form>
+
+                <div class="loading-state" id="fit-loading" style="display:none;">
+                    <div class="loader-ring"></div>
+                    <p>Analyzing reviews and measurements...</p>
+                </div>
+
+                <div class="result-box" id="fit-result" style="display:none;">
+                    <h4>AI Recommendation:</h4>
+                    <p id="recommendation-text"></p>
+                </div>
+            </div>
+            
+            <!-- Standard Add to Cart -->
+            <div class="action-buttons">
+                <button class="btn-cart">ADD TO BAG</button>
+                <button class="btn-wishlist">❤️ WISHLISTED</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

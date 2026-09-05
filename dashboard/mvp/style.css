@@ -1,0 +1,287 @@
+:root {
+    --bg-color: #f5f7fa;
+    --ajio-teal: #00877a;
+    --ajio-dark: #2c3e50;
+    --accent: #ff3f6c;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--ajio-dark);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.search-bar {
+    background: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    width: 400px;
+    color: #888;
+    font-size: 14px;
+}
+
+.nav-links span {
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Main Layout */
+.product-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Visual Section */
+.visual-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-image-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.vto-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 10;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.vto-controls {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.vto-controls h3 { margin-bottom: 5px; color: var(--ajio-teal); }
+.vto-controls p { font-size: 14px; color: #666; margin-bottom: 15px; }
+
+/* Right Section Details */
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.product-brand {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.product-price {
+    margin-bottom: 30px;
+}
+.current-price { font-size: 24px; font-weight: 700; }
+.original-price { font-size: 16px; color: #999; text-decoration: line-through; margin: 0 10px; }
+.discount { color: var(--ajio-teal); font-weight: 600; }
+
+/* Buttons */
+button {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary { background: var(--ajio-dark); color: #fff; width: 100%; }
+.btn-primary:hover { background: #1a252f; }
+.btn-secondary { background: #e0e0e0; color: #333; width: 100%; margin-top: 10px;}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+.btn-cart { background: var(--ajio-teal); color: white; flex: 1; padding: 15px; font-size: 16px;}
+.btn-wishlist { background: #fff; border: 1px solid #ccc; color: #333; flex: 1; }
+
+/* Glassmorphism Fit-Match AI Widget */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated gradient background for the widget */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,135,122,0.05) 0%, rgba(255,63,108,0.05) 100%);
+    animation: rotate 15s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate { 100% { transform: rotate(360deg); } }
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+.badge {
+    background: linear-gradient(45deg, #ff3f6c, #ff7b54);
+    color: white;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+.glass-card h2 {
+    font-size: 20px;
+    background: -webkit-linear-gradient(45deg, var(--ajio-teal), var(--ajio-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.widget-sub {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+.input-group input, .input-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.7);
+    outline: none;
+    transition: border-color 0.3s;
+}
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--ajio-teal);
+}
+
+.btn-glow {
+    width: 100%;
+    background: linear-gradient(45deg, var(--ajio-teal), #00b4a2);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0, 135, 122, 0.4);
+}
+.btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 135, 122, 0.6);
+}
+
+/* Loading & Result States */
+.loading-state {
+    text-align: center;
+    margin-top: 20px;
+}
+.loader-ring {
+    width: 30px; height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--ajio-teal);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+.loading-state p { font-size: 13px; color: #666; }
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 135, 122, 0.08);
+    border-left: 4px solid var(--ajio-teal);
+    border-radius: 0 8px 8px 0;
+}
+.result-box h4 {
+    font-size: 14px;
+    color: var(--ajio-dark);
+    margin-bottom: 5px;
+}
+.result-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
