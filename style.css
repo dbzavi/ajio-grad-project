@@ -192,7 +192,7 @@ header p {
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 100%;
 }
 
 .chat-header {
