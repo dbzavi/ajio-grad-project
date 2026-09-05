@@ -2,13 +2,30 @@ import os
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pandas as pd
-from groq import Groq
+import requests
 import time
 
 app = Flask(__name__)
 CORS(app)
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY", ""))
+def call_groq(system_prompt, user_prompt, max_tokens=150):
+    api_key = os.environ.get("GROQ_API_KEY", "")
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "llama3-8b-8192",
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "temperature": 0.3,
+        "max_tokens": max_tokens
+    }
+    response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload, timeout=10)
+    response.raise_for_status()
+    return response.json()['choices'][0]['message']['content']
 
 # Load dataset once at startup
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -70,16 +87,7 @@ def chat():
     )
     
     try:
-        response = client.chat.completions.create(
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": query}
-            ],
-            model="llama3-8b-8192",
-            temperature=0.3,
-            max_tokens=150
-        )
-        raw_answer = response.choices[0].message.content
+        raw_answer = call_groq(system_prompt, query, max_tokens=150)
         return jsonify({'answer': raw_answer.strip()})
     except Exception as e:
         error_msg = str(e)
@@ -104,16 +112,7 @@ def predict_fit():
     )
     
     try:
-        response = client.chat.completions.create(
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": "What size should I get?"}
-            ],
-            model="llama3-8b-8192",
-            temperature=0.3,
-            max_tokens=200
-        )
-        raw_answer = response.choices[0].message.content
+        raw_answer = call_groq(system_prompt, "What size should I get?", max_tokens=200)
         return jsonify({'recommendation': raw_answer.strip()})
     except Exception as e:
         error_msg = str(e)

@@ -4,3 +4,4 @@ flask-cors==4.0.0
 pandas==2.2.2
 groq==1.7.0
 Markdown==3.4.3
+requests==2.31.0
