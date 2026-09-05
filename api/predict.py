@@ -7,9 +7,7 @@ CORS(app)
 
 @app.route('/api/predict', methods=['POST'])
 def predict_size():
-    # Simulate network latency of RAG Engine fetching data
     time.sleep(1.5)
-    
     data = request.json
     height_ft = data.get('height_ft', 5)
     height_in = data.get('height_in', 5)
@@ -17,12 +15,10 @@ def predict_size():
     body_shape = data.get('body_shape', 'pear')
     fit_pref = data.get('fit_pref', 'regular')
 
-    # Mock RAG logic based on inputs to show dynamic response
     recommended_size = "M"
     confidence = 88
     insight = "Based on 1,204 reviews, this runs slightly large."
     
-    # Simple rule-based mock for prototype
     total_inches = (height_ft * 12) + height_in
     if total_inches > 68 or weight > 75:
         recommended_size = "L"
@@ -50,7 +46,3 @@ def predict_size():
         "confidence_score": confidence,
         "insight_summary": insight
     })
-
-# Local dev server
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)

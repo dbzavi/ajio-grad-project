@@ -1,35 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "mvp/api/index.py",
-      "use": "@vercel/python"
-    }
-  ],
   "rewrites": [
     {
-      "source": "/api/chat",
-      "destination": "/app.py"
-    },
-    {
-      "source": "/api/predict_fit",
-      "destination": "/app.py"
-    },
-    {
-      "source": "/api/predict",
-      "destination": "/mvp/api/index.py"
-    },
-    {
-      "source": "/mvp",
-      "destination": "/mvp/index.html"
-    },
-    {
-      "source": "/",
-      "destination": "/dashboard/index.html"
+      "source": "/api/(.*)",
+      "destination": "/api/app.py"
     }
   ]
 }
