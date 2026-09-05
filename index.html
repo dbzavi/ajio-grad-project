@@ -25,33 +25,28 @@
             <h2>Discovery Insights</h2>
             <div class="dashboard-grid">
                 
-                <!-- Left Column -->
-                <div class="left-col" style="display: flex; flex-direction: column; gap: 2rem;">
-                    <div class="chart-container glass-card">
-                        <canvas id="insightsChart"></canvas>
+                <div class="chart-container glass-card">
+                    <canvas id="insightsChart"></canvas>
+                </div>
+
+                <div class="chat-container glass-card">
+                    <div class="chat-header">
+                        <h3>💬 InsightBot</h3>
+                        <p>Ask me anything about the 1,000+ user reviews.</p>
                     </div>
-                    <div id="themes-container" class="themes-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
-                        <!-- Themes populated by JS -->
+                    <div id="chat-history" class="chat-history">
+                        <div class="chat-msg bot">
+                            <strong>InsightBot:</strong> Hello! I am the RAG engine powered by the Discovery dataset. I am specifically equipped to answer the core questions from your context document. What would you like to know?
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask about user reviews..." autocomplete="off" />
+                        <button id="chat-send" class="primary-btn small-btn">Send</button>
                     </div>
                 </div>
 
-                <!-- Right Column (Chatbot) -->
-                <div class="right-col">
-                    <div class="chat-container glass-card">
-                        <div class="chat-header">
-                            <h3>💬 InsightBot</h3>
-                            <p>Ask me anything about the 1,000+ user reviews.</p>
-                        </div>
-                        <div id="chat-history" class="chat-history">
-                            <div class="chat-msg bot">
-                                <strong>InsightBot:</strong> Hello! I am the RAG engine powered by the Discovery dataset. I am specifically equipped to answer the core questions from your context document. What would you like to know?
-                            </div>
-                        </div>
-                        <div class="chat-input-area">
-                            <input type="text" id="chat-input" placeholder="Ask about user reviews..." autocomplete="off" />
-                            <button id="chat-send" class="primary-btn small-btn">Send</button>
-                        </div>
-                    </div>
+                <div id="themes-container" class="themes-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                    <!-- Themes populated by JS -->
                 </div>
 
             </div>
