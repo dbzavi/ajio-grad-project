@@ -91,7 +91,7 @@ function setupChat() {
         bMsg.className = 'chat-msg bot';
         bMsg.innerHTML = `<strong>InsightBot:</strong> ${answer}`;
         history.appendChild(bMsg);
-        history.scrollTop = history.scrollHeight;
+        bMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     sendBtn.addEventListener('click', handleSend);
