@@ -32,8 +32,16 @@
       "dest": "/mvp/api/index.py"
     },
     {
+      "src": "/mvp/",
+      "dest": "/mvp/index.html"
+    },
+    {
       "src": "/mvp/(.*)",
       "dest": "/mvp/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/dashboard/index.html"
     },
     {
       "src": "/(.*)",
