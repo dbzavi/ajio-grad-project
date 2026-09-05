@@ -11,9 +11,15 @@ CORS(app)
 client = Groq(api_key=os.environ.get("GROQ_API_KEY", ""))
 
 # Load dataset once at startup
-df = pd.read_csv('data/raw_data.csv', on_bad_lines='skip')
-raw_reviews = df.iloc[:, 2].dropna().astype(str).tolist()
-raw_reviews = [r for r in raw_reviews if len(r) > 20]
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR, 'data', 'raw_data.csv')
+try:
+    df = pd.read_csv(csv_path, on_bad_lines='skip')
+    raw_reviews = df.iloc[:, 2].dropna().astype(str).tolist()
+    raw_reviews = [r for r in raw_reviews if len(r) > 20]
+except Exception as e:
+    print(f"Error loading dataset: {e}")
+    raw_reviews = ["This is a sample review because the dataset failed to load."]
 
 def retrieve_context(query, top_k=7):
     # Simple keyword based retrieval
