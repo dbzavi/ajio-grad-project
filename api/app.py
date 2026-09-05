@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pandas as pd
 from groq import Groq
@@ -38,6 +38,15 @@ def retrieve_context(query, top_k=7):
     scored_reviews.sort(key=lambda x: x[0], reverse=True)
     return [r[1] for r in scored_reviews[:top_k]]
 
+@app.route('/')
+def index():
+    return send_from_directory(BASE_DIR, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    if os.path.exists(os.path.join(BASE_DIR, path)):
+        return send_from_directory(BASE_DIR, path)
+    return "Not Found", 404
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
