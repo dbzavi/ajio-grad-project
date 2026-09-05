@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 def call_groq(system_prompt, user_prompt, max_tokens=150):
-    api_key = os.environ.get("GROQ_API_KEY", "")
+    api_key = os.environ.get("GROQ_API_KEY", "").strip()
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
