@@ -44,8 +44,15 @@ def index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    if os.path.exists(os.path.join(BASE_DIR, path)):
-        return send_from_directory(BASE_DIR, path)
+    full_path = os.path.join(BASE_DIR, path)
+    if os.path.isdir(full_path):
+        path = os.path.join(path, 'index.html')
+        full_path = os.path.join(BASE_DIR, path)
+        
+    if os.path.exists(full_path):
+        directory = os.path.dirname(full_path)
+        filename = os.path.basename(full_path)
+        return send_from_directory(directory, filename)
     return "Not Found", 404
 
 @app.route('/api/chat', methods=['POST'])
@@ -68,7 +75,7 @@ def chat():
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": query}
             ],
-            model="openai/gpt-oss-20b",
+            model="llama3-8b-8192",
             temperature=0.3,
             max_tokens=150
         )
@@ -101,7 +108,7 @@ def predict_fit():
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": "What size should I get?"}
             ],
-            model="openai/gpt-oss-20b",
+            model="llama3-8b-8192",
             temperature=0.3,
             max_tokens=200
         )
