@@ -152,6 +152,13 @@ header p {
     padding: 1.5rem;
 }
 
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
 .theme-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
