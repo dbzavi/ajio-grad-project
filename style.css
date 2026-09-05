@@ -295,7 +295,8 @@ header p {
         gap: 1rem;
     }
     .chat-container {
-        height: 400px;
+        order: -1;
+        height: 350px;
     }
     .chat-msg {
         max-width: 95%;
