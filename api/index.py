@@ -15,7 +15,7 @@ def call_groq(system_prompt, user_prompt, max_tokens=150):
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "openai/gpt-oss-20b",
+        "model": "qwen/qwen3.8-27b",
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
