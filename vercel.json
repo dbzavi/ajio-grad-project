@@ -1,15 +1,7 @@
 {
   "functions": {
     "api/index.py": {
-      "includeFiles": [
-        "mvp/**",
-        "data/**",
-        "*.html",
-        "*.css",
-        "*.js",
-        "*.jpg",
-        "*.png"
-      ]
+      "includeFiles": "**/*"
     }
   }
 }
