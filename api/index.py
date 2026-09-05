@@ -83,13 +83,18 @@ def chat():
     
     system_prompt = (
         "You are an expert AI shopping assistant for AJIO. Analyze the provided customer reviews and answer the user's question comprehensively.\n"
-        "Please format your answer in clear, actionable bullet points. If the reviews don't contain the exact answer, provide the best possible insights by combining the review context with general e-commerce knowledge.\n\n"
+        "Format your answer in clear, actionable bullet points.\n"
+        "CRITICAL INSTRUCTION: DO NOT use disclaimers like 'The provided reviews do not explain' or 'Based on the reviews'. Just directly answer the question assertively by inferring the most likely reasons based on general e-commerce behavior combined with the provided context.\n\n"
         f"CONTEXT REVIEWS:\n{context_str}"
     )
     
     try:
         raw_answer = call_groq(system_prompt, query, max_tokens=500)
-        return jsonify({'answer': raw_answer.strip()})
+        
+        import markdown
+        html_answer = markdown.markdown(raw_answer)
+        
+        return jsonify({'answer': html_answer})
     except Exception as e:
         error_msg = str(e)
         print(f"Groq API Error: {error_msg}", flush=True)
