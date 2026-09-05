@@ -15,7 +15,7 @@ def call_groq(system_prompt, user_prompt, max_tokens=150):
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "llama3-8b-8192",
+        "model": "llama-3.3-70b-versatile",
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
@@ -24,7 +24,8 @@ def call_groq(system_prompt, user_prompt, max_tokens=150):
         "max_tokens": max_tokens
     }
     response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload, timeout=10)
-    response.raise_for_status()
+    if not response.ok:
+        raise Exception(f"HTTP {response.status_code}: {response.text}")
     return response.json()['choices'][0]['message']['content']
 
 # Load dataset once at startup
