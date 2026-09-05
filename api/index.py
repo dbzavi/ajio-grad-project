@@ -82,8 +82,9 @@ def chat():
         raw_answer = response.choices[0].message.content
         return jsonify({'answer': raw_answer.strip()})
     except Exception as e:
-        print(f"Groq API Error: {e}", flush=True)
-        return jsonify({'answer': "An error occurred while connecting to the AI."})
+        error_msg = str(e)
+        print(f"Groq API Error: {error_msg}", flush=True)
+        return jsonify({'answer': f"AI Error: {error_msg}"})
 
 
 @app.route('/api/predict_fit', methods=['POST'])
@@ -115,8 +116,9 @@ def predict_fit():
         raw_answer = response.choices[0].message.content
         return jsonify({'recommendation': raw_answer.strip()})
     except Exception as e:
-        print(f"Groq API Error: {e}", flush=True)
-        return jsonify({'recommendation': "An error occurred while connecting to the AI Fit Predictor."})
+        error_msg = str(e)
+        print(f"Groq API Error: {error_msg}", flush=True)
+        return jsonify({'recommendation': f"AI Error: {error_msg}"})
 
 
 @app.route('/api/predict', methods=['POST'])
