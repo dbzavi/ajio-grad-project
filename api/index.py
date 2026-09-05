@@ -82,13 +82,13 @@ def chat():
     context_str = "\n".join([f"- {r}" for r in context_reviews])
     
     system_prompt = (
-        "You are an AI shopping assistant for AJIO. Answer the user's question based ONLY on the following real customer reviews.\n"
-        "Be very concise (2-3 sentences max). If the answer isn't in the reviews, say you don't have enough data.\n\n"
+        "You are an expert AI shopping assistant for AJIO. Analyze the provided customer reviews and answer the user's question comprehensively.\n"
+        "Please format your answer in clear, actionable bullet points. If the reviews don't contain the exact answer, provide the best possible insights by combining the review context with general e-commerce knowledge.\n\n"
         f"CONTEXT REVIEWS:\n{context_str}"
     )
     
     try:
-        raw_answer = call_groq(system_prompt, query, max_tokens=150)
+        raw_answer = call_groq(system_prompt, query, max_tokens=500)
         return jsonify({'answer': raw_answer.strip()})
     except Exception as e:
         error_msg = str(e)
