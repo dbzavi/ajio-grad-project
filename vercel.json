@@ -8,14 +8,6 @@
     {
       "src": "mvp/api/index.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "dashboard/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "mvp/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -36,16 +28,12 @@
       "dest": "/mvp/index.html"
     },
     {
-      "src": "/mvp/(.*)",
-      "dest": "/mvp/$1"
-    },
-    {
       "src": "/",
       "dest": "/dashboard/index.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/dashboard/$1"
+      "dest": "/$1"
     }
   ]
 }
